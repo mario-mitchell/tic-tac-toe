@@ -1,3 +1,4 @@
+let board;
 let boxes = document.querySelectorAll(".row > div");
 let player = "X";
 let winCombos = [
@@ -15,12 +16,35 @@ boxes.forEach(function(box){
     box.addEventListener("click", clickedBox);
 });
 
-newGame();
+restartGame();
 
-function newGame(){
-    document.querySelector("restartGame").style.display = "none"
-    
+function restartGame(){
+    document.querySelector(".gameover").style.display = "none"
+    board = Array.from(Array(9).keys());
+    for (var i = 0; i < boxes.length; i++){
+        boxes[i].innerText = "";
+        boxes[i].style.removeProperty("background-color");
+        boxes[i].addEventListener("click", turnClick, false);
+    }
 }
+
+function turnClick(square){
+    console.log(square.target.id)
+}
+
+function turn(squareId, token){
+    gameBoard[squareId] = player;
+    document.getElementById(squareId).innerText = player;
+    let gameWon = winnerWinner(gameBoard, player)
+    if (gameWon) gameOver(gameWon)
+}
+
+function winnerWinner(board, player){
+    let plays = board.reduce((a, e, i) =>
+    (e === player)) ? a.concat(i) : a,[])
+}
+
+
 
 function clickedBox(e){
     if(e.target.textContent !== ""){

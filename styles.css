@@ -31,7 +31,7 @@
     border-top: 1px black solid;
 }
 
-.endgame{
+.gameover{
     display: none;
     width: 200px;
     top: 120px;
